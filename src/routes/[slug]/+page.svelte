@@ -112,8 +112,6 @@
 			goto('/');
 		} else {
 			showModalComponent(modalStore, 'SuggestTitleModal', { slug }, () => {
-				// see https://www.reddit.com/r/sveltejs/comments/10o7tpu/sveltekit_issue_goto_not_working_on_ios/
-				// await tick() doesn't fix it, hence setTimeout
 				setTimeout(() => goto('/'), 0);
 			});
 		}

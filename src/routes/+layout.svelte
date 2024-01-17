@@ -16,11 +16,9 @@
 	import hljs from 'highlight.js';
 	import CopyButtonPlugin from 'highlightjs-copy';
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	// see https://highlightjs.org/static/demo/ for options:
 	import 'highlight.js/styles/night-owl.css';
 
 	import Header from '$lib/Header.svelte';
-	import Footer from '$lib/Footer.svelte';
 	import SettingsModal from '$lib/Modals/SettingsModal.svelte';
 	import ContextModal from '$lib/Modals/ContextModal.svelte';
 	import ShareModal from '$lib/Modals/ShareModal.svelte';
@@ -44,39 +42,15 @@
 		SuggestTitleModal: { ref: SuggestTitleModal }
 	};
 
-	const meta = {
-		type: 'website',
-		title: 'SlickGPT',
-		url: 'https://slickgpt.vercel.app/',
-		description:
-			'SlickGPT is a light-weight "use-your-own-API-key" ChatGPT client written in Svelte. It offers GPT-4 integration, a userless share feature and other superpowers.',
-		image: '/logo-slickgpt.svg',
-		imageAlt: 'SlickGPT Logo'
-	};
-
 	function setupSkeleton() {
-		// see https://github.com/skeletonlabs/skeleton/issues/905 - gotta do this with ssr = false
 		setInitialClassState();
-		// see https://www.skeleton.dev/utilities/codeblocks
 		storeHighlightJs.set(hljs);
-		// see https://www.skeleton.dev/utilities/popups
 		storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 	}
 </script>
 
 <svelte:head>
-	<meta property="og:type" content={meta.type} />
-	<meta property="og:url" content={meta.url} />
-	<meta property="og:title" content={meta.title} />
-	<meta name="twitter:title" content={meta.title} />
-	<meta name="description" content={meta.description} />
-	<meta property="og:description" content={meta.description} />
-	<meta name="twitter:description" content={meta.description} />
-	<meta property="og:image" content={meta.image} />
-	<meta name="twitter:image" content={meta.image} />
-	<meta name="twitter:image:alt" content={meta.imageAlt} />
-
-	<title>{meta.title}</title>
+	<title>Girlfriend Therapy</title>
 </svelte:head>
 
 <AppShell
@@ -89,10 +63,6 @@
 	</svelte:fragment>
 
 	<slot />
-
-	<svelte:fragment slot="footer">
-		<Footer />
-	</svelte:fragment>
 </AppShell>
 
 <!-- Skeleton Singletons: -->
