@@ -50,7 +50,7 @@
 </script>
 
 <svelte:head>
-	<title>Girlfriend Therapy</title>
+	<title>Digihelp Online Medical Services</title>
 </svelte:head>
 
 <AppShell

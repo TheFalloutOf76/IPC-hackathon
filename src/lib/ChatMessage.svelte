@@ -50,11 +50,9 @@
 	<!-- Header -->
 	<div class="flex justify-between space-x-12 mb-1 items-center">
 		<!-- Author -->
-		<span class="font-bold">{message.role === 'user' ? 'You' : 'AI'}:</span>
+		<span class="font-bold">{message.role === 'user' ? 'You' : 'Doctor'}:</span>
 
 		<div class="flex space-x-4">
-			<!-- Tokens -->
-			<TokenCost tokens={countTokens(message)} />
 
 			{#if $chatStore[slug] && message.id}
 				<div class="flex space-x-0">

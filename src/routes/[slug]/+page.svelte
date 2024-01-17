@@ -91,7 +91,7 @@
 
 	async function handleCloseChat() {
 		// untouched => discard
-		if (chat.title === slug && !chat.contextMessage?.content && chat.messages.length === 0) {
+		if (chat.title === slug && chat.messages.length === 0) {
 			showToast(toastStore, 'Empty chat was discarded automatically', 'secondary');
 			deleteChat(true);
 		}
@@ -138,54 +138,6 @@
 			<button class="btn btn-sm variant-ghost-error" on:click={showConfirmDeleteModal}>
 				<Trash class="w-6 h-6" />
 			</button>
-
-			<!-- Settings -->
-			<span class="relative inline-flex">
-				<button
-					class="btn btn-sm variant-ghost-warning"
-					on:click={() => showModalComponent(modalStore, 'SettingsModal', { slug })}
-				>
-					<Cog6Tooth class="w-6 h-6" />
-				</button>
-				{#if !$settingsStore.openAiApiKey}
-					<span class="relative flex h-3 w-3">
-						<span
-							style="left: -10px;"
-							class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error-400 opacity-75"
-						/>
-						<span
-							style="left: -10px;"
-							class="relative inline-flex rounded-full h-3 w-3 bg-error-500"
-						/>
-					</span>
-				{/if}
-			</span>
-
-			<!-- Share -->
-			<span
-				class="relative inline-flex"
-				style={!$settingsStore.openAiApiKey ? 'margin-left: -4px;' : ''}
-			>
-				<button
-					disabled={!chat.contextMessage.content?.length && !chat.messages?.length}
-					class="btn btn-sm inline-flex variant-ghost-tertiary"
-					on:click={() => showModalComponent(modalStore, 'ShareModal', { slug }, handleChatShared)}
-				>
-					<Share class="w-6 h-6" />
-				</button>
-				{#if chat.updateToken}
-					<span class="relative flex h-3 w-3">
-						<span
-							style="left: -10px;"
-							class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-400 opacity-75"
-						/>
-						<span
-							style="left: -10px;"
-							class="relative inline-flex rounded-full h-3 w-3 bg-tertiary-500"
-						/>
-					</span>
-				{/if}
-			</span>
 		</svelte:fragment>
 	</Toolbar>
 
@@ -195,8 +147,7 @@
 			{#if !$settingsStore.hideLanguageHint}
 				<HintMessage title="Did you know?" variantClass="variant-ghost-surface">
 					<p>
-						ChatGPT understands various languages. You can just ask your questions in German if you
-						like.
+						All data is stored on your computer, which ensures patient confidentiality.
 					</p>
 					<svelte:fragment slot="actions">
 						<button class="btn btn-sm" on:click={() => ($settingsStore.hideLanguageHint = true)}>
@@ -206,60 +157,8 @@
 				</HintMessage>
 			{/if}
 
-			<!-- Context -->
-			<HintMessage
-				title="Context"
-				variantClass="variant-ghost-tertiary"
-				actionClass="grid h-full"
-				omitAlertActionsClass={true}
-			>
-				{#if hasContext && chat.contextMessage.content}
-					<p>
-						{@html snarkdown(chat.contextMessage.content)}
-					</p>
-				{/if}
-				{#if hasStopSequence}
-					<p class="text-xs text-slate-500">
-						Stop:
-						{Array.isArray(chat.settings.stop) ? chat.settings.stop.join(', ') : chat.settings.stop}
-					</p>
-				{/if}
-				{#if !hasContext && !hasStopSequence}
-					<p>
-						You can give the AI an initial <strong>context</strong> for your chat which greatly
-						changes the way it will behave during the conversation. Use a
-						<strong>stop sequence</strong> to limit the answers given by ChatGPT.
-					</p>
-				{/if}
-
-				<svelte:fragment slot="actions">
-					{#if hasContext}
-						<!-- Tokens -->
-						<div class="justify-self-end mb-2">
-							<TokenCost tokens={countTokens(chat.contextMessage)} />
-						</div>
-					{/if}
-					<div class="flex flex-row md:flex-col space-x-2 space-y-2">
-						<button
-							class="btn self-center variant-filled-primary"
-							on:click={() => showModalComponent(modalStore, 'ContextModal', { slug })}
-						>
-							Edit
-						</button>
-						{#if hasContext}
-							<button
-								class="btn self-center variant-filled-tertiary"
-								on:click={() =>
-									createNewChat({ context: chat.contextMessage.content, settings: chat.settings })}
-							>
-								New Chat
-							</button>
-						{/if}
-					</div>
-				</svelte:fragment>
-			</HintMessage>
 		</svelte:fragment>
 	</Chat>
 
-	<ChatInput {slug} chatCost={cost} bind:this={chatInput} />
+	<ChatInput {slug} chatCost=0 bind:this={chatInput} />
 {/if}

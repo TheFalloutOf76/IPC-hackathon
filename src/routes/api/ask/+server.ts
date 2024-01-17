@@ -24,8 +24,9 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 		const settings: OpenAiSettings = requestData.settings;
 		throwIfUnset('settings', settings);
 
+		/*
 		const openAiKey: string = requestData.openAiKey;
-		throwIfUnset('OpenAI API key', openAiKey);
+		throwIfUnset('OpenAI API key', openAiKey);*/
 
 		const completionOpts: ChatCompletionCreateParamsStreaming = {
 			...settings,
@@ -44,7 +45,7 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 
 		const response = await fetch(apiUrl, {
 			headers: {
-				Authorization: `Bearer ${openAiKey}`,
+				Authorization: `Bearer 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`,
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',

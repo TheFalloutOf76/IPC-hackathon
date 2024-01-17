@@ -74,7 +74,7 @@ export function createNewChat(template?: {
 }
 
 export function canSuggestTitle(chat: Chat) {
-	return chat.contextMessage?.content || chat.messages?.length > 0;
+	return chat.messages?.length > 0;
 }
 
 export async function suggestChatTitle(chat: Chat, openAiApiKey: string): Promise<string> {

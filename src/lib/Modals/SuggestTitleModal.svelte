@@ -9,7 +9,7 @@
 	let slug = $modalStore[0].meta?.slug || '';
 	let isLoading = false;
 
-	let title = $chatStore[slug].title;
+	let title = $chatStore?.slug?.title;
 
 	$: showAiSuggestOptions = $settingsStore.openAiApiKey && canSuggestTitle($chatStore[slug]);
 

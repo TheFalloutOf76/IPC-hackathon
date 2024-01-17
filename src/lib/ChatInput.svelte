@@ -260,14 +260,6 @@
 							bind:this={textarea}
 						/>
 						<div class="flex flex-col md:flex-row items-center justify-end md:items-end">
-							<!-- Insert Code button -->
-							<button
-								type="submit"
-								class="btn btn-sm ml-2"
-								on:click|preventDefault={handleInsertCode}
-							>
-								<CodeBracket class="w-6 h-6" />
-							</button>
 							<!-- Send button -->
 							<button type="submit" class="btn btn-sm ml-2">
 								<PaperAirplane class="w-6 h-6" />
@@ -276,17 +268,6 @@
 					</div>
 				</form>
 			</div>
-			<!-- Tokens -->
-			{#if input.length > 0}
-				<button
-					class="flex items-center text-xs text-slate-500 dark:text-slate-200 ml-4 space-x-1"
-					class:animate-pulse={!!debounceTimer}
-					on:click={openTokenCostDialog}
-				>
-					<span>{tokensLeft} tokens left</span>
-					<CircleStack class="w-6 h-6" />
-				</button>
-			{/if}
 		</div>
 	{/if}
 </footer>

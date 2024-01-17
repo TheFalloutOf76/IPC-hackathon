@@ -13,7 +13,8 @@ export enum OpenAiModel {
 	Gpt35Turbo = 'gpt-3.5-turbo',
 	Gpt4 = 'gpt-4',
 	Gpt432k = 'gpt-4-32k',
-	Gpt41106preview = 'gpt-4-1106-preview'
+	Gpt41106preview = 'gpt-4-1106-preview',
+	Gpt35Turbo1106 = 'gpt-3.5-turbo-1106',
 }
 
 export interface OpenAiSettings {
@@ -25,7 +26,7 @@ export interface OpenAiSettings {
 }
 
 export const defaultOpenAiSettings: OpenAiSettings = {
-	model: OpenAiModel.Gpt35Turbo,
+	model: OpenAiModel.Gpt35Turbo1106,
 	max_tokens: 2048,
 	temperature: 1,
 	top_p: 1
@@ -56,6 +57,11 @@ export const models: { [key in OpenAiModel]: OpenAiModelStats } = {
 	},
 	'gpt-4-1106-preview': {
 		maxTokens: 4096,
+		costPrompt: 0.01,
+		costCompletion: 0.03
+	},
+	'gpt-3.5-turbo-1106': {
+		maxTokens: 16385,
 		costPrompt: 0.01,
 		costCompletion: 0.03
 	}
