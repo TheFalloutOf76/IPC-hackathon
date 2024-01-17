@@ -26,7 +26,7 @@ export interface OpenAiSettings {
 }
 
 export const defaultOpenAiSettings: OpenAiSettings = {
-	model: OpenAiModel.Gpt35Turbo1106,
+	model: OpenAiModel.Gpt41106preview,
 	max_tokens: 2048,
 	temperature: 1,
 	top_p: 1
@@ -56,7 +56,7 @@ export const models: { [key in OpenAiModel]: OpenAiModelStats } = {
 		costCompletion: 0.12
 	},
 	'gpt-4-1106-preview': {
-		maxTokens: 4096,
+		maxTokens: 128000,
 		costPrompt: 0.01,
 		costCompletion: 0.03
 	},
@@ -64,7 +64,7 @@ export const models: { [key in OpenAiModel]: OpenAiModelStats } = {
 		maxTokens: 16385,
 		costPrompt: 0.01,
 		costCompletion: 0.03
-	}
+	},
 };
 /**
  * see https://platform.openai.com/docs/guides/chat/introduction > Deep Dive Expander
