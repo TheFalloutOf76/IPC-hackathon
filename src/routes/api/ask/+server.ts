@@ -45,7 +45,7 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 
 		const response = await fetch(apiUrl, {
 			headers: {
-				Authorization: `Bearer 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`,
+				Authorization: `Bearer ${process.env.apikey}`,
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
